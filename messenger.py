@@ -66,7 +66,7 @@ def received_message(event):
                 q = None
                 send_humanly(sender_id, 'Thank you for your feedback')
             else:
-                send_humanly(sender_id, models.select_questions()[q+1].question)
+                send_humanly(sender_id, models.select_questions()[q].question)
             models.update_participant(participant.id, q)
             return
 
@@ -120,10 +120,8 @@ def received_message(event):
         quick_reply_payload = quick_reply.get('payload')
         if quick_reply_payload == 'PICK_OK':
             models.update_participant(participant.id, 0)
-            send_humanly(sender_id, models.select_questions()[q+1].question)
+            send_humanly(sender_id, models.select_questions()[0].question)
         print("quick reply for message %s with payload %s" % (message_id, quick_reply_payload))
-
-        page.send(sender_id, "Quick reply tapped")
 
     #if message_text:
         #send_message(sender_id, message_text)

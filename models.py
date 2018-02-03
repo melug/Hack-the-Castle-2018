@@ -19,11 +19,13 @@ class Participant(db.Entity):
     fb_id = Required(str)
     group = Optional(Group)
     question = Optional(int)
+    feedbacks = Set('Feedback')
 
 class Question(db.Entity):
     question = Required(str)
+    feedbacks = Set('Feedback')
 
-class Feedback:
+class Feedback(db.Entity):
     question = Required(Question)
     participant = Required(Participant)
     answer = Required(str)
