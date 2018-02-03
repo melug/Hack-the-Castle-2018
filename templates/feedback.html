@@ -1,7 +1,8 @@
 {% extends 'layout.html' %}
 {%block breadcrumb %}
 <ol class="breadcrumb">
-    <li><a href="/">Events</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/question">Questions</a></li>
 </ol>
 {%endblock %}
 {% block content %}
@@ -20,18 +21,24 @@
                         <thead>
                             <tr>
                                 <th class="text-center">#</th>
+                                <th>Event</th>
                                 <th>User</th>
-                                <th>Plan</th>
-                                <th>Status</th>
+                                <th>Question</th>
+                                <th>Text</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for event in events %}
+                            {% for f in feedback %}
                                 <tr>
-                                    <td class="text-center">{{ event.id }}</td>
-                                    <td><a href="/event/{{ event.id }}" class="btn-link">{{ event.name }}</a></td>
-                                    <td><span class="label label-purple">Hackaton</span></td>
-                                    <td><span class="label label-success">Active</span></td>
+                                    <td class="text-center">
+                                        {{f.id}}
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="label label-warning">Hack the Castle</span>
+                                    </td>
+                                    <td class="text-center">{{f.participant}}</td>
+                                    <td class="text-center">{{f.question}}</td>
+                                    <td class="text-center">{{ f.answer }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -40,7 +47,6 @@
             </div>
             <!--===================================================-->
             <!--End Bordered Table-->
-
         </div>
     </div>
 </div>
